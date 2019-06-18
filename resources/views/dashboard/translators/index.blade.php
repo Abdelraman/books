@@ -28,7 +28,11 @@
 
                             <div class="col-md-4">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> @lang('site.search')</button>
-                                <a href="{{ route('dashboard.translators.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.add')</a>
+                                @if (auth()->user()->hasPermission('create_translators'))
+                                    <a href="{{ route('dashboard.translators.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.add')</a>
+                                @else
+                                    <a href="#" class="btn btn-primary disabled"><i class="fa fa-plus"></i> @lang('site.add')</a>
+                                @endif
                             </div>
 
                         </div><!-- end of row -->
@@ -61,6 +65,8 @@
                                         <td>
                                             @if (auth()->user()->hasPermission('update_translators'))
                                                 <a href="{{ route('dashboard.translators.edit', $translator->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
+                                            @else
+                                                <a href="#" class="btn btn-info btn-sm disabled"><i class="fa fa-edit"></i> @lang('site.edit')</a>
                                             @endif
 
                                             @if (auth()->user()->hasPermission('delete_translators'))
@@ -69,6 +75,8 @@
                                                     {{ method_field('delete') }}
                                                     <button type="submit" class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i> @lang('site.delete')</button>
                                                 </form><!-- end of form -->
+                                            @else
+                                                <a href="#" class="btn btn-danger btn-sm disabled"><i class="fa fa-trash"></i> @lang('site.delete')</a>
                                             @endif
                                         </td>
                                     </tr>

@@ -42,6 +42,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getFirstNameAttribute($value)
+    {
+        return ucfirst($value);
+
+    }//end of get first name
+
+    public function getLastNameAttribute($value)
+    {
+        return ucfirst($value);
+
+    }//end of get last name
+
     public function getFullNameAttribute()
     {
         return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);

@@ -49,7 +49,7 @@ class TranslatorController extends Controller
         
         $user->books()->attach($request->books);
 
-        $user->syncPermissions($request->permissions);
+//        $user->syncPermissions($request->permissions);
 
         session()->flash('success', __('site.added_successfully'));
         return redirect()->route('dashboard.translators.index');

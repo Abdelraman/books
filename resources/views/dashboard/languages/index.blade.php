@@ -30,6 +30,8 @@
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> @lang('site.search')</button>
                                 @if (auth()->user()->hasPermission('create_languages'))
                                     <a href="{{ route('dashboard.languages.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.add')</a>
+                                @else
+                                    <a href="#" class="btn btn-primary disabled"><i class="fa fa-plus"></i> @lang('site.add')</a>
                                 @endif
                             </div>
 
@@ -61,6 +63,8 @@
                                         <td>
                                             @if (auth()->user()->hasPermission('update_languages'))
                                                 <a href="{{ route('dashboard.languages.edit', $language->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
+                                            @else
+                                                <a href="#" class="btn btn-info btn-sm disabled"><i class="fa fa-edit"></i> @lang('site.edit')</a>
                                             @endif
 
                                             @if (auth()->user()->hasPermission('delete_languages'))
@@ -69,6 +73,9 @@
                                                     {{ method_field('delete') }}
                                                     <button type="submit" class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i> @lang('site.delete')</button>
                                                 </form><!-- end of form -->
+
+                                            @else
+                                                <a href="#" class="btn btn-danger btn-sm disabled"><i class="fa fa-trash"></i> @lang('site.delete')</a>
                                             @endif
                                         </td>
                                     </tr>
